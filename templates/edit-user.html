@@ -1,0 +1,6 @@
+{% extends 'create-user.html' %}
+
+{% block action_buttons %}
+  <button class="btn btn-outline-primary " type="submit" formaction="/users/{{user.id}}" formmethod="GET">Cancel</button>
+  <button type="submit" class="btn btn-success" formaction="/users/{{user.id}}/edit" formmethod="POST">Save</button>
+{% endblock %}

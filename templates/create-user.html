@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% set title  = 'Create a user' %}
+{% block content %}
+  <div>
+    {% if error %}
+      <div class="alert alert-danger" role="alert">
+        {{error.message}}
+      </div>
+    {% endif %}
+  </div>
+  <form action="/users/new" method="POST" class="d-flex flex-column" style="width: max(375px, 40%)">
+    <div class="mb-3" class="">
+      <label for="first-name-input" class="form-label " >First name</label>
+      <input 
+      name="first_name" 
+      type="text" 
+      class="form-control" 
+      id="first-name-input" 
+      placeholder="Enter a first name" 
+      required
+      value="{{user.first_name if user else ''}}">
+    </div>
+
+    <div class="mb-3">
+      <label  for="last-name-input" class="form-label " >Last name</label>
+      <input  
+        name="last_name" 
+        type="text" 
+        class="form-control" 
+        id="last-name-input" 
+        placeholder="Enter a last name" 
+        required
+        value="{{user.last_name if user else ''}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="image-input" class="form-label ">Image URL</label>
+      <input 
+        name="image_url" 
+        type="text" 
+        class="form-control" 
+        id="image-input" 
+        placeholder="Provide a image of this user"
+        value="{{user.image_url if user else ''}}">
+    </div>
+    <div class="d-flex justify-content-end gap-2">
+      {% block action_buttons %}
+        
+      <button type="submit" class="btn btn-success " class="">Add</button>
+      {% endblock %}
+    </div>
+  </form>
+{% endblock %}

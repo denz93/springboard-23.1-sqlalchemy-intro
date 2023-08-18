@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% set title  = 'User detail page' %}
+
+{% block content %}
+  {% if user is not none %}
+    <div class="d-flex gap-2">
+      <img style="width: 128px; height: 128px; object-fit:contain;" src="{{user.image_url}}" onerror='this.src="{{ url_for("static", filename="user.png" ) }}"' loading="lazy" alt="profile">
+      <div class="d-flex flex-column gap-1">
+        <div class="fs-3 ">{{user.full_name}}</div>
+        <form class="d-flex gap-1">
+          <button 
+            class="btn btn-primary"
+            formaction="/users/{{user_id}}/edit"
+            formmethod="GET"
+            >Edit</button>
+          <button 
+          class="btn btn-danger "
+          formaction="/users/{{user_id}}/delete"
+          formmethod="POST"
+          >Delete</button>
+
+        </form>
+      </div>
+    </div>
+  {% else %}
+    <div class="alert alert-danger" role="alert">User with id "{{user_id}}" not found</div>
+  {% endif %}
+{% endblock %}
