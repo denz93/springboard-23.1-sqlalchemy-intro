@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% set title  = 'Add Post for ' + user.full_name %}
+{% block content %}
+  <form>
+    <div class="mb-3">
+      <label for="title-input" class="form-label">Title</label>
+      <input name="title" type="text" id="title-input" class="form-control ">
+    </div>
+    <div class="mb-3">
+      <label for="content-input" class="form-label">Content</label>
+      <textarea class="form-control " name="content" id="content-input" cols="30" rows="10"></textarea>
+    </div>
+    <div class="d-flex gap-2 justify-content-end mb-3">
+      {% block button_groups %}
+        <button 
+          type="submit"
+          class="btn btn-outline-info " 
+          formaction="/users/{{user.id}}" 
+          formmethod="GET">
+          Cancel
+        </button>
+        <button 
+          class="btn btn-success"
+          formmethod="POST"
+          formaction="/users/{{user.id}}/posts/new">
+          Add
+        </button>
+      {% endblock %}
+    </div>
+  </form>
+{% endblock %}

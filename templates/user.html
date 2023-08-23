@@ -4,7 +4,7 @@
 {% block content %}
   {% if user is not none %}
     <div class="d-flex gap-2">
-      <img style="width: 128px; height: 128px; object-fit:contain;" src="{{user.image_url}}" onerror='this.src="{{ url_for("static", filename="user.png" ) }}"' loading="lazy" alt="profile">
+      <img style="width: 128px; height: 128px; object-fit:contain;" src="{{user.image_url}}" onerror='this.src=`{{ url_for("static", filename="user.png" ) }}`' loading="lazy" alt="profile">
       <div class="d-flex flex-column gap-1">
         <div class="fs-3 ">{{user.full_name}}</div>
         <form class="d-flex gap-1">
@@ -20,6 +20,16 @@
           >Delete</button>
 
         </form>
+        
+        <div class="mt-5">
+          <div class="fs-4">Posts</div>
+          <ul>
+            {% for post in user.posts %}
+              <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+            {% endfor %}
+          </ul>
+          <a class="btn btn-primary" href="/users/{{user.id}}/posts/new">Add Post</a>
+        </div>
       </div>
     </div>
   {% else %}

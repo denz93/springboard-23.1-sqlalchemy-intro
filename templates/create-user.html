@@ -1,13 +1,6 @@
 {% extends 'base.html' %}
 {% set title  = 'Create a user' %}
 {% block content %}
-  <div>
-    {% if error %}
-      <div class="alert alert-danger" role="alert">
-        {{error.message}}
-      </div>
-    {% endif %}
-  </div>
   <form action="/users/new" method="POST" class="d-flex flex-column" style="width: max(375px, 40%)">
     <div class="mb-3" class="">
       <label for="first-name-input" class="form-label " >First name</label>

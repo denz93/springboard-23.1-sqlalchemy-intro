@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% set title  = 'Post Detail' %}
+{% block content %}
+  {% if post %}
+    <h2>{{post.title}}</h2>
+    <p>{{post.content}}</p>
+    <p class="fst-italic ">{{post.author.full_name}} on {{post.created_at | datetime('%b %d %Y, %I:%M:%S %p')}}</p>
+    <form class="d-flex gap-2">
+      <button 
+        class="btn btn-outline-primary"
+        formaction="/users/{{post.author.id}}"
+        formmethod="GET">
+        Cancel
+      </button>
+      <button class="btn btn-primary"
+      formaction="/posts/{{post.id}}/edit"
+      formmethod="GET">
+        Edit
+      </button>
+      <button class="btn btn-danger"
+      formaction="/posts/{{post.id}}/delete"
+      formmethod="POST">
+        Delete
+      </button>
+    </form>
+  {% endif %}
+{% endblock %}
