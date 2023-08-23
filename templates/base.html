@@ -8,12 +8,46 @@
 
   <title>{{title}}</title>
 </head>
-<body>
-  <div class="container container-fluid">
+<body class="">
+  <nav class="navbar navbar-expand-md ">
+    <div class="container-fluid">
+
+      <button
+        class="navbar-toggler"
+        data-bs-toogle="collapse"
+        data-bs-target="#rootNavBar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        id="rootNavBar"
+        class="collapse navbar-collapse "
+      >
+        <ul class="navbar-nav me-auto  mb-2 mb-md-0">
+          <li class="nav-item ">
+            <a class="nav-link " href="/users">Users</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container container-fluid" style="min-height: calc(100vh - 3rem - 30px)">
     <h1>{{title}}</h1>
+    {% with messages = get_flashed_messages(with_categories=true)  %}
+      {% if messages %}
+        {% for category, message in messages %}
+          {% if category == 'error' %}
+            <div class="alert alert-danger" role="alert">{{message}}</div>
+          {% else %}
+            <div class="alert alert-{{category}}" role="alert">{{message}}</div>
+            
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
     {% block content %}{% endblock %}
   </div>
-  <div class="footer">
+  <div class="footer text-center p-4">
     <a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Smashicons - Flaticon</a>
   </div>
 </body>

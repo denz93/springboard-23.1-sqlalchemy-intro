@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% set title  = 'Edit Post' %}
+
+{% block content %}
+  <form>
+    <div class="mb-3">
+      <label for="title-input" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title-input" name="title" value="{{post.title if post else ''}}">
+    </div>
+    <div class="mb-3">
+      <label for="content-input" class="form-label">Content</label>
+      <textarea type="text" class="form-control" id="content-input" name="content">{{post.content if post else ''}}</textarea>
+    </div>
+    <div class="d-flex gap-2 justify-content-end ">
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        formaction="/posts/{{post.id}}/edit"
+        formmethod="GET"
+      >
+        Cancel
+      </button>
+      <button
+      type="submit"
+        class="btn btn-success"
+        formaction="/posts/{{post.id}}/edit"
+        formmethod="POST"
+      >
+        Edit
+      </button>
+    </div>
+  </form>
+{% endblock %}
+{% block button_groups %}
+  
+{% endblock %}
