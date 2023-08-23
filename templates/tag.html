@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% set title  = tag.name if tag else '' %}
+{% block content  %}
+  {% if tag is none %}
+  <div class="alert alert-danger">Tag is not found</div>
+  {% else %}
+
+  <ul>
+    {% for post in tag.posts %}
+      <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+    {% endfor %}
+  </ul>
+  <form class="d-flex gap-3">
+    <button 
+      type="submit" 
+      class="btn btn-primary" 
+      formaction="/tags/{{tag.id}}/edit" 
+      formmethod="GET">
+      Edit
+    </button>
+    <button 
+      type="submit" 
+      class="btn btn-danger " 
+      formaction="/tags/{{tag.id}}/delete"
+      formmethod="POST"
+      >Delete</button>
+  </form>
+  {% endif %}
+
+{% endblock %}

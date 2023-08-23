@@ -25,7 +25,10 @@
       >
         <ul class="navbar-nav me-auto  mb-2 mb-md-0">
           <li class="nav-item ">
-            <a class="nav-link " href="/users">Users</a>
+            <a class="nav-link {{'active' if current_page == 'users' else ''}}" href="/users">Users</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link {{'active' if current_page == 'tags' else ''}}" href="/tags">Tags</a>
           </li>
         </ul>
       </div>

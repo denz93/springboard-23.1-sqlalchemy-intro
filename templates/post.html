@@ -5,6 +5,15 @@
     <h2>{{post.title}}</h2>
     <p>{{post.content}}</p>
     <p class="fst-italic ">{{post.author.full_name}} on {{post.created_at | datetime('%b %d %Y, %I:%M:%S %p')}}</p>
+    <p>
+      <b>Tags: </b>
+      <div class="d-inline-flex gap-1">
+        {% for tag in post.tags %}
+          
+        <span class="px-2 py-1 rounded-5 text-light  bg-primary">{{tag.name}}</span>
+        {% endfor %}
+      </div>
+    </p>
     <form class="d-flex gap-2">
       <button 
         class="btn btn-outline-primary"

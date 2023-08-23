@@ -1,0 +1,6 @@
+{% extends 'new-tag.html' %}
+{% set title  = 'Edit a tag' %}
+{% block content %}
+  <button type="submit" class="btn btn-info " formaction="/tags" formmethod="GET">Cancel</button>
+  <button type="submit" class="btn btn-success " formaction="/tags/{{tag.id}}/edit" formmethod="POST">Edit</button>
+{% endblock %}

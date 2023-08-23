@@ -9,8 +9,14 @@
     </div>
     <div class="mb-3">
       <label for="content-input" class="form-label">Content</label>
-      <textarea type="text" class="form-control" id="content-input" name="content">{{post.content if post else ''}}</textarea>
+      <textarea type="text" class="form-control" id="content-input" name="content" rows="10" cols="30">{{post.content if post else ''}}</textarea>
     </div>
+    {% for tag in all_tags %}
+      <div class="mb-3">
+        <input type="checkbox" name="tags[]" id="tag_{{tag.id}}" value="{{tag.id}}" {{"checked" if tag in post.tags else ""}}>
+        <label for="tag_{{tag.id}}">{{tag.name}}</label>
+      </div>
+    {% endfor %}
     <div class="d-flex gap-2 justify-content-end ">
       <button
         type="submit"
