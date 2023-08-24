@@ -4,7 +4,7 @@ dotenvs = dotenv_values()
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = None 
-    SECRET_KEY = getenv('SERECT_KEY', dotenvs.get('SECRET_KEY'))
+    SECRET_KEY = getenv('SECRET_KEY', dotenvs.get('SECRET_KEY'))
     
 class DevConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql:///blogly'
