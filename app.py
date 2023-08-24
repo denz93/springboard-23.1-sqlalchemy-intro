@@ -121,8 +121,13 @@ def create_app():
       content = request.form.get('content'),
       author = user
       )
-    tags = list(map(lambda tag_id: Tag(id=tag_id), request.form.getlist('tags[]', [])))
-    post.tags = tags
+    tags = list(
+      map(
+        lambda tag_id: db.session.get(Tag, tag_id), 
+        request.form.getlist('tags[]')
+      )
+    )
+    post.tags.extend(tags)
     db.session.add(post)
     db.session.commit()
     return redirect(f'/users/{user_id}')
